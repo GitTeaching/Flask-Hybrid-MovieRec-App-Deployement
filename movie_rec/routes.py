@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
-from movie_rec import app, db
-from movie_rec.models import TopMovie
+from movie_rec import app
 from movie_rec.forms import MovieTitleForm
 from sqlalchemy import desc
 
@@ -114,10 +113,6 @@ def trending():
 		posters.append('https://image.tmdb.org/t/p/w500' + str(data_json['results'][i]['poster_path']))
 	return  str(posters)
 
-@app.route("/top_rated")
-def top_rated():
-	top_movies = TopMovie.query.order_by(desc(TopMovie.score))
-	return top_movies[2].title
 
 
 
