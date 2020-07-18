@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
 from movie_rec import app
 from movie_rec.forms import MovieTitleForm
-from sqlalchemy import desc
 
 from tmdbv3api import TMDb, Movie
 import json
