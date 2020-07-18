@@ -42,7 +42,7 @@ def get_recommendations(title, cosine_sim):
 def get_trending_movies():
 	tmdb = TMDb()
 	tmdb_movie = Movie()
-	response = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=REPLACEWITHYOURAPIKEYHERE&language=en-US&page=1')
+	response = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=23e48adb1f662882c97ada4b5569ff31&language=en-US&page=1')
 	data_json = response.json()
 	movies = []
 	posters = []
@@ -105,7 +105,7 @@ def recommend(movie_title):
 def trending():
 	tmdb = TMDb()
 	tmdb_movie = Movie()
-	response = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=REPLACEWITHYOURAPIKEYHERE&language=en-US&page=1')
+	response = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=23e48adb1f662882c97ada4b5569ff31&language=en-US&page=1')
 	data_json = response.json()
 	movies = []
 	posters = []
