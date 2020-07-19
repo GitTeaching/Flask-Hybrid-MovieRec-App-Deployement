@@ -9,9 +9,9 @@ import requests
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
-#from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-#from sklearn.metrics.pairwise import linear_kernel
+from sklearn.metrics.pairwise import linear_kernel
 
 
 ######################
@@ -30,7 +30,7 @@ def get_recommendations(title, cosine_sim):
 	    # Sort the movies based on the similarity scores
 	    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
 	    # Get the scores of the 10 most similar movies
-	    sim_scores = sim_scores[1:13]
+	    sim_scores = sim_scores[1:7]
 	    # Get the movie indices
 	    movie_indices = [i[0] for i in sim_scores]
 	    # Return the top 10 most similar movies
@@ -86,14 +86,19 @@ def home():
 
 @app.route("/recommend/<movie_title>", methods=['GET', 'POST'])
 def recommend(movie_title):
-	rec_movies = get_recommendations(movie_title.lower(), cosine_sim_1)
-	#rec_movies_2 = get_recommendations(movie_title.lower(), cosine_sim_2)
-	if rec_movies is None :
+	rec_movies_1 = get_recommendations(movie_title.lower(), cosine_sim_1)
+	data['overview'] = data['overview'].fillna('')
+	tfidf = TfidfVectorizer(min_df=3,  max_features=None, strip_accents='unicode', 
+	                analyzer='word',token_pattern=r'\w{1,}',ngram_range=(1, 3), stop_words = 'english')
+	tfidf_matrix = tfidf.fit_transform(data['overview'])
+	cosine_sim_2 = linear_kernel(tfidf_matrix, tfidf_matrix)
+	rec_movies_2 = get_recommendations(movie_title.lower(), cosine_sim_2)
+	if rec_movies_1 is None or rec_movies_2 is None:
 		flash('Sorry! This movie is not in our database. Please check the spelling or try with some other movies.', 'danger')
 		return redirect(url_for('home'))
-	rec_movies = rec_movies.tolist()
-	#rec_movies_2 = rec_movies_2.tolist()
-	#rec_movies = rec_movies_1 + rec_movies_2
+	rec_movies_1 = rec_movies_1.tolist()
+	rec_movies_2 = rec_movies_2.tolist()
+	rec_movies = rec_movies_1 + rec_movies_2
 	form = MovieTitleForm()
 	if form.validate_on_submit():
 		return redirect(url_for('recommend', movie_title=form.movie_title.data))
