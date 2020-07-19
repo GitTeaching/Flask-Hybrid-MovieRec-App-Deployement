@@ -65,6 +65,8 @@ count = TfidfVectorizer(min_df=3,  max_features=None, strip_accents='unicode',
 count_matrix = count.fit_transform(data['overview'])
 cosine_sim_2 = linear_kernel(count_matrix, count_matrix)
 
+count_matrix = None
+
 data = data.reset_index(drop=True)
 indices = pd.Series(data.index, index=data['movie_title'])
 
