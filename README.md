@@ -13,7 +13,7 @@ Deployed at - **Heroku** : https://hybrid-movie-recommender-app.herokuapp.com/ho
 
 #### Recommendation :
 
-**Content-Based Filtering**  and  Rate/Vote Based Filtering
+Content-Based Filtering  and  Rate/Vote Based Filtering
 
 <img src="https://github.com/GitTeaching/Flask-Hybrid-MovieRec-App-Deployement/blob/master/movie_rec/static/img/Screenshots/Recommended.png" width=700/>
 
@@ -25,6 +25,6 @@ Most popular movies on https://www.themoviedb.org/, using the **movie DB API**
 
 #### Best Rated : 
 
-**Popularity Based Filtering**
+Popularity Based Filtering
 
 <img src="https://github.com/GitTeaching/Flask-Hybrid-MovieRec-App-Deployement/blob/master/movie_rec/static/img/Screenshots/BestRated.png" width=700/>
