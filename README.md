@@ -3,7 +3,7 @@ Python - Hybrid movie recommendation web application using **Machine Learning, t
 
 ## Deployement :
 
-Deployed at - **Heroku** : https://hybrid-movie-recommender-app.herokuapp.com/home
+Deployed at - **Heroku** : https://hybrid-movie-recommender-app.herokuapp.com/
 
 ## Screenshots:
 
