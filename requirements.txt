@@ -1,4 +1,4 @@
-requests==2.22.0
+requests==2.31.0
 WTForms==2.3.1
 pandas==0.25.1
 tmdbv3api==1.6.1
